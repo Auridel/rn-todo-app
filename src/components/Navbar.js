@@ -1,11 +1,12 @@
 import React from "react";
 import {StyleSheet, Text, View} from "react-native";
 import {THEME} from "../theme";
+import {TextBold} from "./ui/TextBold";
 
 export const Navbar = () => {
     return (
         <View style={styles.container}>
-            <Text style={styles.header}>{"Todo App"}</Text>
+            <TextBold style={styles.header}>{"Todo App"}</TextBold>
         </View>
     )
 }
@@ -19,7 +20,6 @@ const styles = StyleSheet.create({
     },
     header: {
         fontSize: 20,
-        fontWeight: "700",
         color: "#ffffff"
     }
 })

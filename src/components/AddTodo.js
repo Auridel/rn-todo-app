@@ -1,12 +1,18 @@
-import React from "react";
-import {Button, StyleSheet, TextInput, View} from "react-native";
+import React, {useState} from "react";
+import {StyleSheet, TextInput, View} from "react-native";
 import {THEME} from "../theme";
+import {AppButton} from "./ui/AppButton";
 
 export const AddTodo = () => {
+    const [value, setValue] = useState("");
+
     return (
         <View style={styles.addTodo}>
-            <TextInput style={styles.input} placeholder="Enter todo"/>
-            <Button title={"Add Todo"} />
+            <TextInput
+                value={value}
+                onChangeText={text => setValue(text)}
+                style={styles.input} placeholder="Enter todo"/>
+            <AppButton>AddTodo</AppButton>
         </View>
     )
 }
