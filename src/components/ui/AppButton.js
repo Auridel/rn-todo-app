@@ -3,13 +3,13 @@ import {TouchableOpacity, TouchableNativeFeedback, Platform, View, StyleSheet} f
 import {THEME} from "../../theme";
 import {TextBold} from "./TextBold";
 
-export const AppButton = ({children, onPress, color = THEME.MAIN_COLOR}) => {
+export const AppButton = ({children, onPress, color = THEME.MAIN_COLOR, text}) => {
     const Container = Platform.OS === "android"? TouchableNativeFeedback : TouchableOpacity;
 
     return (
         <Container onPress={onPress} activeOpacity={0.8}>
             <View style={{...styles.button, backgroundColor: color}}>
-                <TextBold style={styles.text}>
+                <TextBold style={{...styles.text, ...text}}>
                     {children}
                 </TextBold>
             </View>

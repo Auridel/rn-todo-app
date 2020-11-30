@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
-import {View} from "react-native";
 import {AppLoading} from "expo";
 import * as Font from "expo-font";
-import {MainScreen} from "./src/screens/MainScreen";
-import {Navbar} from "./src/components/Navbar";
+import {MainLayout} from "./src/MainLayout";
+import {ScreenState} from "./src/context/screen/ScreenState";
+
 
 async function loadFonts() {
     await Font.loadAsync({
@@ -21,11 +21,10 @@ export default function App() {
                                   />
 
     return (
-          <View>
-            <Navbar/>
-            <MainScreen/>
-          </View>
-        );
-    }
+        <ScreenState>
+            <MainLayout/>
+        </ScreenState>
+    );
+}
 
 

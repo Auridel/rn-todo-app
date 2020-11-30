@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {StyleSheet, TextInput, View} from "react-native";
 import {THEME} from "../theme";
 import {AppButton} from "./ui/AppButton";
+import {AntDesign} from "@expo/vector-icons";
 
 export const AddTodo = () => {
     const [value, setValue] = useState("");
@@ -12,7 +13,9 @@ export const AddTodo = () => {
                 value={value}
                 onChangeText={text => setValue(text)}
                 style={styles.input} placeholder="Enter todo"/>
-            <AppButton>AddTodo</AppButton>
+            <AppButton>
+                <AntDesign name="plus" size={16} color="#ffffff" />AddTodo
+            </AppButton>
         </View>
     )
 }
@@ -22,7 +25,8 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "center",
         alignItems: "center",
-        padding: 20
+        paddingVertical: 20,
+        marginBottom: 20
     },
     input: {
         width: "60%",
@@ -31,5 +35,8 @@ const styles = StyleSheet.create({
         borderBottomWidth: 2,
         borderStyle: "solid",
         borderBottomColor: THEME.MAIN_COLOR
+    },
+    icon: {
+        paddingRight: 25
     }
 })
