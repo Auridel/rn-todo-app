@@ -3,7 +3,16 @@ import {Alert} from "react-native";
 import {todoReducer} from "./todoReducer";
 import {TodoContext} from "./TodoContext";
 import {Service} from "../../Service";
-import {ADD_TODO, GET_TODOS, HIDE_ERROR, SHOW_ERROR, SHOW_LOADER, HIDE_LOADER, DELETE_TODO} from "../actionTypes";
+import {
+    ADD_TODO,
+    GET_TODOS,
+    HIDE_ERROR,
+    SHOW_ERROR,
+    SHOW_LOADER,
+    HIDE_LOADER,
+    DELETE_TODO,
+    UPDATE_TODO
+} from "../actionTypes";
 import {ScreenContext} from "../screen/ScreenContext";
 
 export const TodoState = ({children}) => {
@@ -82,6 +91,15 @@ export const TodoState = ({children}) => {
         }
     }
 
+    const updateTodo = async (id, title) => {
+        try{
+            await Service.updateTodo(id, title);
+            dispatch({type: UPDATE_TODO, id, title});
+        }catch (e) {
+            showError();
+        }
+    }
+
     return (
         <TodoContext.Provider value={
             {
@@ -90,7 +108,8 @@ export const TodoState = ({children}) => {
                 error: state.error,
                 getTodos,
                 addTodo,
-                deleteTodo
+                deleteTodo,
+                updateTodo
             }
         }>{children}</TodoContext.Provider>
     )

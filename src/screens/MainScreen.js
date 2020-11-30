@@ -10,7 +10,7 @@ import {Loader} from "../components/ui/Loader";
 export const MainScreen = () => {
     const [deviceWidth, setDeviceWidth] = useState(Dimensions.get("window").width - THEME.PADDING_HORIZONTAL);
     const {changeScreen} = useContext(ScreenContext);
-    const {todos, loading, error, addTodo, getTodos, deleteTodo} = useContext(TodoContext);
+    const {todos, loading, addTodo, getTodos, deleteTodo} = useContext(TodoContext);
 
     const loadTodos = useCallback(async () => await getTodos(), [getTodos]);
 

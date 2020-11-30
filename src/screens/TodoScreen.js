@@ -10,19 +10,24 @@ import {EditTodo} from "../components/EditTodo";
 
 export const TodoScreen = () => {
     const {todoId, changeScreen} = useContext(ScreenContext);
-    const {todos, deleteTodo} = useContext(TodoContext);
+    const {todos, deleteTodo, updateTodo} = useContext(TodoContext);
 
     const todo = todos.find(t => t.id === todoId)
 
     const [modal, setModal] = useState(false);
 
+    const updateHandler = async (title) => {
+        await updateTodo(todoId, title);
+        setModal(false);
+    }
+
     return (
         <View style={styles.container}>
-            <EditTodo visible={modal} trigger={setModal} value={todo.title}/>
+            <EditTodo visible={modal} trigger={setModal} title={todo.title} onSave={updateHandler}/>
 
             <View style={styles.todo}>
                 <TextRegular style={styles.title}>{todo.title}</TextRegular>
-                <AppButton>
+                <AppButton onPress={() => setModal(true)}>
                     <AntDesign name="edit" size={24} color="#ffffff" />
                 </AppButton>
             </View>
