@@ -22,8 +22,8 @@ const handlers = {
             return todo;
         })]
     }),
-    [SHOW_LOADER]: state => ({...state, loader: true}),
-    [HIDE_LOADER]: state => ({...state, loader: false}),
+    [SHOW_LOADER]: state => ({...state, loading: true}),
+    [HIDE_LOADER]: state => ({...state, loading: false}),
     [SHOW_ERROR]: state => ({...state, error: true}),
     [HIDE_ERROR]: state => ({...state, error: false}),
     DEFAULT: state => state

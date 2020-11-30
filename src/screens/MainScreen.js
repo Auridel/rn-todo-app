@@ -5,11 +5,12 @@ import {Todo} from "../components/Todo";
 import {THEME} from "../theme";
 import {ScreenContext} from "../context/screen/ScreenContext";
 import {TodoContext} from "../context/todo/TodoContext";
+import {Loader} from "../components/ui/Loader";
 
 export const MainScreen = () => {
     const [deviceWidth, setDeviceWidth] = useState(Dimensions.get("window").width - THEME.PADDING_HORIZONTAL);
     const {changeScreen} = useContext(ScreenContext);
-    const {todos, addTodo, getTodos, deleteTodo} = useContext(TodoContext);
+    const {todos, loading, error, addTodo, getTodos, deleteTodo} = useContext(TodoContext);
 
     const loadTodos = useCallback(async () => await getTodos(), [getTodos]);
 
@@ -28,6 +29,7 @@ export const MainScreen = () => {
         }
     }, [])
 
+    if(loading) return <Loader/>
 
     return (
         <View style={{...styles.container, width: deviceWidth}} >
@@ -35,7 +37,7 @@ export const MainScreen = () => {
             {todos.length?
             <FlatList style={styles.list} keyExtractor={item => item.id.toString()} data={todos} renderItem={({item}) => <Todo todo={item} onOpen={changeScreen} onRemove={deleteTodo}/>}/>
                 :
-            <Image source={require("../../assets/empty.svg")}/>}
+                <View style={styles.imgWrapper}><Image style={styles.image} source={require("../../assets/empty.png")}/></View>}
         </View>
     )
 }
@@ -48,5 +50,13 @@ const styles = StyleSheet.create({
     },
     list: {
         width: "100%"
+    },
+    image: {
+        width: 150,
+        height: 150
+    },
+    imgWrapper: {
+        alignItems: "center",
+        justifyContent: "center"
     }
 })
