@@ -1,21 +1,31 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, {useState} from 'react';
+import {View} from "react-native";
+import {AppLoading} from "expo";
+import {MainScreen} from "./src/screens/MainScreen";
+import {Navbar} from "./src/components/Navbar";
+import {Font} from "expo/build/removed.web";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+async function loadFonts() {
+    await Font.loadAsync({
+        "lato-regular": require("./assets/fonts/Lato-Regular.ttf"),
+        "lato-bold": require("./assets/fonts/Lato-Bold.ttf")
+    })
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default function App() {
+    const [ready, setReady] = useState(false);
+
+    if(!ready) return <AppLoading startAsync={loadFonts}
+                                  onFinish={() => setReady(true)}
+                                  onError={(e) => console.log(e)}
+                                  />
+
+    return (
+      <View>
+        <Navbar/>
+        <MainScreen/>
+      </View>
+    );
+    }
+
+
