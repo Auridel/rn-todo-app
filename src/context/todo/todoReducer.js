@@ -12,7 +12,7 @@ import {
 
 const handlers = {
     [GET_TODOS]: (state, {todos}) => ({...state, todos}),
-    [ADD_TODO]: (state, {todo}) => ({...state, todos: [...state.todos, todo]}),
+    [ADD_TODO]: (state, {id, title}) => ({...state, todos: [...state.todos, {id, title}]}),
     [DELETE_TODO]: (state, {id}) => ({...state,
         todos: [...state.todos.filter(todo => todo.id !== id)]
     }),

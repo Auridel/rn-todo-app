@@ -9,6 +9,9 @@ export const Todo = ({todo, onOpen, onRemove}) => {
             onPress={() => {
                 onOpen(todo.id)
             }}
+            onLongPress={() => {
+                onRemove(todo.id);
+            }}
             style={styles.todo}>
             <TextRegular style={styles.text}>{todo.title}</TextRegular>
         </TouchableOpacity>

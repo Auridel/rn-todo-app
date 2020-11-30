@@ -1,4 +1,4 @@
-class Service {
+export class Service {
     static async getTodos () {
         try {
             return await req("https://rn-todo-app-4a127.firebaseio.com/todos.json");
