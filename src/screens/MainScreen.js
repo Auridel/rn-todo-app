@@ -3,7 +3,6 @@ import {View, StyleSheet, FlatList, Dimensions} from "react-native";
 import {AddTodo} from "../components/AddTodo";
 import {Todo} from "../components/Todo";
 import {THEME} from "../theme";
-import {Navbar} from "../components/Navbar";
 import {ScreenContext} from "../context/screen/ScreenContext";
 
 export const MainScreen = () => {
@@ -26,12 +25,9 @@ export const MainScreen = () => {
     ]
 
     return (
-        <View>
-            <Navbar/>
-            <View style={{...styles.container, width: deviceWidth}} >
-                <AddTodo/>
-                <FlatList style={styles.list} keyExtractor={item => item.id.toString()} data={todos} renderItem={({item}) => <Todo todo={item} onOpen={changeScreen}/>}/>
-            </View>
+        <View style={{...styles.container, width: deviceWidth}} >
+            <AddTodo/>
+            <FlatList style={styles.list} keyExtractor={item => item.id.toString()} data={todos} renderItem={({item}) => <Todo todo={item} onOpen={changeScreen}/>}/>
         </View>
     )
 }
