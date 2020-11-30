@@ -53,6 +53,7 @@ export const TodoState = ({children}) => {
         showLoader();
         try {
             const res = await Service.getTodos()
+            if(res === null) return dispatch({type: GET_TODOS, todos: []});
             const todos = Object.keys(res).map(id => {
                 return {
                     id,
