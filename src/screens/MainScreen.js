@@ -44,12 +44,15 @@ export const MainScreen = () => {
 
 const styles = StyleSheet.create({
     container: {
+        flex: 1,
         alignItems: "center",
-        justifyContent: "center",
-        paddingHorizontal: 30
+        justifyContent: "flex-start",
+        paddingHorizontal: 30,
+        paddingBottom: 40
     },
     list: {
-        width: "100%"
+        width: "100%",
+        paddingVertical: 20
     },
     image: {
         width: 150,
